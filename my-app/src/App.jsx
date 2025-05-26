@@ -3,11 +3,16 @@ import Papa from 'papaparse'
 import AgeGender from './components/AgeGender'
 import Workout from './components/Workout'
 import TimeExperience from './components/TimeExperience'
-
+import BMIFatScatterPlot  from './components/BMIFatScatterPlot'
+import WaterIntakeBubbleChart from './components/WaterIntakeBubbleChart'
+import WorkoutEfficiencyRadarECharts from './components/WorkoutEfficiencyRadarECharts'
 
 function App() {
-  const [csvData,setCsvData] = useState([]);
-  useEffect(()=>{
+  const [csvData, setCsvData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
     fetch('/dataset.csv')
     .then(res=>res.text())
     .then((text)=>{
@@ -26,9 +31,8 @@ function App() {
      
     return (
     <>
-    <AgeGender data={csvData}/>
-    <Workout data={csvData}/>
-        <TimeExperience data={csvData}/>
+
+      <WaterIntakeBubbleChart data={csvData}/>
     </>
 
     );
@@ -38,4 +42,4 @@ function App() {
 
 }
 
-export default App
+export default App;

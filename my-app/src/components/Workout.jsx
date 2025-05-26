@@ -2,10 +2,6 @@ import ReactEchart from 'echarts-for-react'
 import React, { useRef, useState, useEffect } from 'react';
 import {Box,Container} from '@mui/material'
 
-
-
-
-
 function Workout({data,style}){
     const containerRef = useRef(null);
     const [width, setWidth] = useState(0);
