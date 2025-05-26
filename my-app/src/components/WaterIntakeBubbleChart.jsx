@@ -95,5 +95,10 @@ export default function WaterIntakeBubbleChart({ data }) {
     }
   };
 
-  return <Scatter data={chartData} options={options} />;
+  return (
+    <div>
+<Scatter data={chartData} options={options} />
+    </div>
+  )
+  ;
 }

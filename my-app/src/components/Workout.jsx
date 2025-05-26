@@ -4,12 +4,12 @@ import {Box,Container} from '@mui/material'
 
 function Workout({data,style}){
     const containerRef = useRef(null);
-    const [width, setWidth] = useState(0);
+    const [width, setWidth] = useState(800);
 
-    useEffect(() => {
-        const offsetWidth = containerRef.current.offsetWidth;
-        setWidth(offsetWidth);
-    }, []);
+    // useEffect(() => {
+    //     const offsetWidth = containerRef.current.offsetWidth;
+    //     setWidth(offsetWidth);
+    // }, []);
 
 
 
@@ -142,10 +142,12 @@ for(let index = 0 ; index < maleData.length ; index++){
     }
 
 
-    return <Container  ref={containerRef}>
-        <ReactEchart  option={maleOption}/>
-        <ReactEchart  option={femaleOption}/>
-    </Container>
+    return <div style={{
+         paddingTop: 80,
+    }}>
+        <ReactEchart  option={maleOption}   />
+        <ReactEchart  option={femaleOption}  />
+    </div>
 
 }
 

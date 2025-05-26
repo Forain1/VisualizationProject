@@ -1,3 +1,4 @@
+import { Title } from 'chart.js';
 import EChartsReact from 'echarts-for-react';
 import ReactEchart from 'echarts-for-react'
 import React, { useRef, useState, useEffect } from 'react'
@@ -30,6 +31,8 @@ function TimeExperience({data}){
             type:'category',
             data:['1','2','3','4','5','6','7'],
             name:'一周的训练次数',
+            nameLocation: 'middle',
+            nameGap:30,
             axisLabel:{
                 formatter:(v)=>{
                     return `${v}次`

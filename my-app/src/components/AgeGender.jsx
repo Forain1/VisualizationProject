@@ -74,7 +74,7 @@ const option = {
         dimensions: ['ageRange', 'Male', 'Female'],
         source:sourceData,
     },
-    xAxis:{type:'category',name:'年龄范围',axisLabel: {
+    xAxis:{type:'category',name:'年龄范围', nameGap:0 ,axisLabel: {
       formatter: (value) => {
         if (value === '20') return '<20';
         else if (value === '30') return '20-30';
@@ -101,19 +101,21 @@ function switchSortWay(){
 
 
   return (
-    <Container>
-      <ReactECharts option={option} style={{height: 400}} />
+<>
+      <ReactECharts option={option} />
       <Box sx={{
         display:'flex',
         justifyContent:'center',
-        mt:0
+        mt:0,
       }}>
       <Button variant='contained' onClick={switchSortWay}>
         {sortway===0&&`按年龄排序`}
         {sortway===1&&`按男性数量排序`}
         {sortway===2&&`按女性数量排序`}</Button>
       </Box>
-  </Container>
+</>
+
+
 
 
 

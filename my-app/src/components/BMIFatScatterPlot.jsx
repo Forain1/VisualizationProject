@@ -137,5 +137,7 @@ export default function BMIFatScatterPlot({ data }) {
     }
   };
 
-  return <Scatter data={chartData} options={options} />;
+  return(<>
+   <Scatter data={chartData} options={options}  />
+  </>);
 }

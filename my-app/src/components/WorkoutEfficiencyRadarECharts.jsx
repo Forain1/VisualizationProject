@@ -62,7 +62,7 @@ export default  function WorkoutEfficiencyRadarECharts({ data }) {
         trigger: 'item'
       },
       legend: {
-        top: 30,
+        bottom:10,
         data: aggregated.map(a => a.name)
       },
       radar: {
@@ -82,5 +82,8 @@ export default  function WorkoutEfficiencyRadarECharts({ data }) {
     };
   }, [data]);
 
-  return <ReactECharts option={chartOption} style={{ height: '100%', width: '100%' }} />;
+  return (
+    <div>  <ReactECharts option={chartOption} /></div>
+  );
+
 }

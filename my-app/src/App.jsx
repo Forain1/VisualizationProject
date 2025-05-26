@@ -1,41 +1,41 @@
-import { useState,useEffect } from 'react'
-import Papa from 'papaparse'
-import AgeGender from './components/AgeGender'
-import Workout from './components/Workout'
-import TimeExperience from './components/TimeExperience'
-import BMIFatScatterPlot  from './components/BMIFatScatterPlot'
-import WaterIntakeBubbleChart from './components/WaterIntakeBubbleChart'
-import WorkoutEfficiencyRadarECharts from './components/WorkoutEfficiencyRadarECharts'
-
+import Dashboard from "./components/Dashboard";
+import HeaderBar from "./components/HeaderBar";
+import FooterBar from "./components/Fotterbar";
+import gymBg from './assets/gym.jpg';
 function App() {
-  const [csvData, setCsvData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch('/dataset.csv')
-    .then(res=>res.text())
-    .then((text)=>{
-      Papa.parse(text,{
-        header:true,
-        skipEmptyLines:true,
-        complete:(res,file)=>{
-          setCsvData(res.data);
-        } 
-      })
-    })
-  },[]);
-  useEffect(() => {
-    console.log(csvData); 
-  }, [csvData]);
      
-    return (
-    <>
+    return(<>
+      <style>{`
+    html, body, #root {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+  `}</style>
+    
+    <div
+      style={{
+        minHeight: '100vh',
+        backgroundImage: `url(${gymBg})`,  // 背景图地址
+        backgroundSize: 'cover',                      // 图片铺满容器
+        backgroundPosition: 'center center',          // 居中显示
+        backgroundRepeat: 'no-repeat',                 // 不重复
+        color: '#fff',                                // 文字颜色（根据背景调整）
+        boxSizing: 'border-box',
+      }}
+    >
+        <HeaderBar/>
+          <div style={{ marginTop: '20px', padding:'10px'}}>
+       <Dashboard />
+    </div>
 
-      <WaterIntakeBubbleChart data={csvData}/>
+        <FooterBar />
+    </div>
+      
     </>
-
-    );
+    ) ;
 
 
 

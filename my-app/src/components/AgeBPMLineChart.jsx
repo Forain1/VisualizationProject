@@ -317,7 +317,7 @@ const AgeBPMLineChart = ({ data }) => {
     <ReactECharts 
       option={option} 
       style={{ 
-        height: '550px', 
+        height: '100%', 
         width: '100%',
         boxShadow: '0 2px 12px 0 rgba(0,0,0,0.1)',
         borderRadius: '8px',
