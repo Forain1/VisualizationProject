@@ -1,5 +1,8 @@
 import { useState,useEffect } from 'react'
 import Papa from 'papaparse'
+import AgeGender from './components/AgeGender'
+import Workout from './components/Workout'
+import TimeExperience from './components/TimeExperience'
 
 
 function App() {
@@ -13,17 +16,25 @@ function App() {
         skipEmptyLines:true,
         complete:(res,file)=>{
           setCsvData(res.data);
-        }
+        } 
       })
     })
-  })
-
+  },[]);
+  useEffect(() => {
+    console.log(csvData); 
+  }, [csvData]);
+     
     return (
-    <div>
-      <h2>CSV 数据预览：</h2>
-      <pre>{JSON.stringify(csvData, null, 2)}</pre>
-    </div>
-  );
+    <>
+    <AgeGender data={csvData}/>
+    <Workout data={csvData}/>
+        <TimeExperience data={csvData}/>
+    </>
+
+    );
+
+
+
 
 }
 
