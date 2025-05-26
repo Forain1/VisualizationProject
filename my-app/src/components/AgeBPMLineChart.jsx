@@ -13,7 +13,6 @@ const AgeBPMLineChart = ({ data }) => {
 
   // 处理数据：计算每个年龄组的平均心率、置信区间等统计信息
   const lineData = Object.entries(ageGroups).map(([group, range]) => {
-    // 过滤出当前年龄组的数据
     const groupData = data.filter(item => {
       const age = parseInt(item.Age);
       return age >= range.min && age <= range.max;
@@ -21,15 +20,10 @@ const AgeBPMLineChart = ({ data }) => {
     const count = groupData.length;
     if (count === 0) return null;
 
-    // 计算平均静息心率
     const avg = groupData.reduce((sum, item) => sum + parseInt(item.Resting_BPM), 0) / count;
-    
-    // 计算标准差
     const stdDev = Math.sqrt(
       groupData.reduce((sum, item) => sum + Math.pow(parseInt(item.Resting_BPM) - avg, 2), 0) / count
     );
-    
-    // 计算95%置信区间
     const marginOfError = 1.96 * (stdDev / Math.sqrt(count));
 
     return {
@@ -45,6 +39,7 @@ const AgeBPMLineChart = ({ data }) => {
   const overallAvg = data.reduce((sum, item) => sum + parseInt(item.Resting_BPM), 0) / data.length;
 
   const option = {
+    backgroundColor: '#fff', // 设置白色背景
     title: {
       text: '年龄与静息心率分析',
       left: 'center',
@@ -177,7 +172,8 @@ const AgeBPMLineChart = ({ data }) => {
       },
       splitLine: {
         lineStyle: {
-          type: 'dashed'
+          type: 'dashed',
+          color: '#eee' // 浅色分割线
         }
       },
       axisLabel: {
@@ -198,10 +194,7 @@ const AgeBPMLineChart = ({ data }) => {
           color: '#c23531'
         },
         lineStyle: {
-          width: 3,
-          shadowColor: 'rgba(0, 0, 0, 0.2)',
-          shadowBlur: 5,
-          shadowOffsetY: 3
+          width: 3
         },
         label: {
           show: true,
@@ -214,9 +207,7 @@ const AgeBPMLineChart = ({ data }) => {
         emphasis: {
           itemStyle: {
             borderWidth: 2,
-            borderColor: '#fff',
-            shadowBlur: 10,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+            borderColor: '#fff'
           }
         }
       },
@@ -233,7 +224,7 @@ const AgeBPMLineChart = ({ data }) => {
           opacity: 0
         },
         areaStyle: {
-          color: 'rgba(47, 69, 84, 0.3)'
+          color: 'rgba(47, 69, 84, 0.2)' // 调浅置信区间颜色
         },
         symbol: 'none',
         stack: 'confidence',
@@ -243,7 +234,7 @@ const AgeBPMLineChart = ({ data }) => {
           formatter: ({ data }) => `${data.lower.toFixed(1)}-${data.upper.toFixed(1)}`,
           color: '#2f4554',
           fontSize: 10,
-          backgroundColor: 'rgba(255,255,255,0.7)',
+          backgroundColor: 'rgba(255,255,255,0.9)',
           padding: [2, 4],
           borderRadius: 4
         },
@@ -260,9 +251,9 @@ const AgeBPMLineChart = ({ data }) => {
             {
               yAxis: 60,
               itemStyle: {
-                color: 'rgba(144, 238, 144, 0.2)',
+                color: 'rgba(144, 238, 144, 0.1)', // 调浅健康范围颜色
                 borderWidth: 1,
-                borderColor: 'rgba(100, 200, 100, 0.3)'
+                borderColor: 'rgba(100, 200, 100, 0.2)'
               }
             },
             {
@@ -274,8 +265,7 @@ const AgeBPMLineChart = ({ data }) => {
             position: 'inside',
             formatter: '健康心率范围',
             color: '#666',
-            fontSize: 12,
-            fontWeight: 'bold'
+            fontSize: 12
           }
         },
         lineStyle: {
@@ -307,10 +297,7 @@ const AgeBPMLineChart = ({ data }) => {
       }
     ],
     animationDuration: 1500,
-    animationEasing: 'elasticOut',
-    animationDelay: function (idx) {
-      return idx * 200;
-    }
+    animationEasing: 'elasticOut'
   };
 
   return (
@@ -319,24 +306,12 @@ const AgeBPMLineChart = ({ data }) => {
       style={{ 
         height: '100%', 
         width: '100%',
-        boxShadow: '0 2px 12px 0 rgba(0,0,0,0.1)',
-        borderRadius: '8px',
+        backgroundColor: '#fff', // 容器也设为白色
         padding: '15px'
       }}
       opts={{ 
         renderer: 'svg',
         devicePixelRatio: 2
-      }}
-      onEvents={{
-        'click': params => {
-          console.log('图表点击事件:', params);
-        },
-        'legendselectchanged': params => {
-          console.log('图例选择变化:', params);
-        },
-        'datazoom': params => {
-          console.log('缩放事件:', params);
-        }
       }}
     />
   );
