@@ -126,14 +126,17 @@ const div9 = '4 / 4 / 5 / 7';
     {
         gridArea:div7,
 }}>
+    
     <AgeBPMLineChart data={csvData}/>
 </div>
 
 <div style={{
     gridArea:div8
 }}>
-    
-    <ExperienceLevelBarChart data={csvData}/>    
+    <ChartCard style={{height:'580px'}}>
+    <ExperienceLevelBarChart data={csvData}/> 
+    </ChartCard>
+   
 </div>
 
 

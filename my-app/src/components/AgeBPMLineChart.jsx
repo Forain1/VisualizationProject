@@ -305,9 +305,11 @@ const AgeBPMLineChart = ({ data }) => {
       option={option} 
       style={{ 
         height: '100%', 
-        width: '100%',
+        width: '775px',
         backgroundColor: '#fff', // 容器也设为白色
-        padding: '15px'
+        padding: '15px',
+        borderRadius: 12,
+        
       }}
       opts={{ 
         renderer: 'svg',

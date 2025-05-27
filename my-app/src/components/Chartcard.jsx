@@ -1,7 +1,7 @@
 const ChartCard = ({ children ,style={}}) => (
   <div
     style={{
-      backgroundColor: '#f5f7fa',  // 淡灰色背景
+      backgroundColor: '#fff',  
       borderRadius: 12,
       boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
       padding: 16,
